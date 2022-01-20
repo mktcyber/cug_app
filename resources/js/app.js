@@ -26,6 +26,8 @@
      {path: '/admin/employees/edit/:id', component: EmployeesEdit, name: 'editEmployee'},
  ]
  
- const router = new VueRouter({ routes })
+ const router = new VueRouter({  
+    routes
+ })
  
  const app = new Vue({ router }).$mount('#app')

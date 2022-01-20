@@ -10,19 +10,19 @@
                     <div class="row">
                         <div class="col-xs-12 form-group">
                             <label class="control-label">Employee Id</label>
-                            <input type="text" v-model="employees.employee_id" class="form-control">
+                            <input type="text" v-model="employee.Employee_id" class="form-control">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 form-group">
                             <label class="control-label">Employee Name</label>
-                            <input type="text" v-model="employees.Employee_name" class="form-control">
+                            <input type="text" v-model="employee.Employee_name" class="form-control">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 form-group">
                             <label class="control-label">Employee CUG Number</label>
-                            <input type="text" v-model="employees.Employee_cug_number" class="form-control">
+                            <input type="text" v-model="employee.Employee_cug_number" class="form-control">
                         </div>
                     </div>
                     <div class="row">
@@ -41,10 +41,10 @@
         mounted() {
             let app = this;
             let id = app.$route.params.id;
-            app.employee_id = id;
+            app.Employee_id = id;
             axios.get('/api/v1/employees/' + id)
                 .then(function (resp) {
-                    app.employees = resp.data;
+                    app.employee = resp.data;
                 })
                 .catch(function () {
                     alert("Could not load your employee")
@@ -52,8 +52,8 @@
         },
         data: function () {
             return {
-                employee_id: null,
-                employees: {
+                Employee_id: null,
+                employee: {
                     Employee_name: '',
                     Employee_cug_number:'',
                 }
@@ -63,7 +63,7 @@
             saveForm() {
                 event.preventDefault();
                 var app = this;
-                var newEmployee = app.employees;
+                var newEmployee = app.employee;
                 axios.patch('/api/v1/employees/' + app.Employee_id, newEmployee)
                     .then(function (resp) {
                         app.$router.replace('/');

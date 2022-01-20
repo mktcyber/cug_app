@@ -1,7 +1,7 @@
 <template>
 <div>
 	<div class="form-group">
-		<router-link :to="{name: 'createEmployee'}" class="btn btn-success">Create new company</router-link>
+		<router-link :to="{name: 'createEmployee'}" class="btn btn-success">Create new Employee</router-link>
 	</div>
 	<div class="panel panel-default">
 		<div class="panel-body">
@@ -14,15 +14,15 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="(employee, index) in employees" :key="index">
-                    <td>{{ employees.Employee_id }}</td>
-                    <td>{{ employees.Employee_name }}</td>
-                    <td>{{ employees.Employee_Cug_Number }}</td>
+				<tr v-for="employee, index in employees" :key="index">
+                    <td>{{ employee.Employee_id }}</td>
+                    <td>{{ employee.Employee_name }}</td>
+                    <td>{{ employee.Employee_cug_number }}</td>
                     <td>
-                        <router-link :to="{name: 'editEmployee', params: {id: employees.Employee_id}}" class="btn btn-xs btn-default">
+                        <router-link :to="{name: 'editEmployee', params: {id: employee.id}}" class="btn btn-xs btn-default">
                             Edit
                         </router-link>
-                        <a href="#" class="btn btn-xs btn-danger" v-on:click="deleteEntry(employees.Employee_id, index)">
+                        <a href="#" class="btn btn-xs btn-danger" v-on:click="deleteEntry(employee.Employee_id, index)">
                             Delete
                         </a>
                     </td>
@@ -53,10 +53,10 @@
                 });
         },
         methods: {
-            deleteEntry(id, index) {
+            deleteEntry(Employee_id, index) {
                 if (confirm("Do you really want to delete it?")) {
                     var app = this;
-                    axios.delete('/api/v1/employees/' + id)
+                    axios.delete('/api/v1/employees/' + Employee_id)
                         .then(function (resp) {
                             app.employees.splice(index, 1);
                         })
