@@ -2,15 +2,18 @@
 <div>
 	<div class="form-group">
 		<router-link :to="{name: 'createEmployee'}" class="btn btn-success">Create new Employee</router-link>
+        
+        <button class="btn btn-sm btn-primary" @click="print">Print</button>
 	</div>
 	<div class="panel panel-default">
-		<div class="panel-body">
+		<div id="print" class="panel-body">
 			<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
 				  <th>Employee ID</th>
 				  <th>Employee Name</th>
 				  <th>Employee CUG Number</th>
+                  <th v-show="!printing">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -18,11 +21,11 @@
                     <td>{{ employee.Employee_id }}</td>
                     <td>{{ employee.Employee_name }}</td>
                     <td>{{ employee.Employee_cug_number }}</td>
-                    <td>
+                    <td v-show="!printing">
                         <router-link :to="{name: 'editEmployee', params: {id: employee.id}}" class="btn btn-xs btn-default">
                             Edit
                         </router-link>
-                        <a href="#" class="btn btn-xs btn-danger" v-on:click="deleteEntry(employee.Employee_id, index)">
+                        <a href="#" class="btn btn-xs btn-danger" v-on:click="deleteEntry(employee.id, index)">
                             Delete
                         </a>
                     </td>
@@ -38,7 +41,8 @@
     export default {
         data: function () {
             return {
-                employees: []
+                employees: [],
+                printing: false
             }
         },
         mounted() {
@@ -64,7 +68,13 @@
                             alert("Could not delete employee");
                         });
                 }
-            }
+            },
+            print() {
+                this.printing = true
+                this.$htmlToPaper('print', ()=>{
+                    this.printing = false
+                });
+                }
         }
     }
 </script>

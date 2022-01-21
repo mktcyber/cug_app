@@ -41,7 +41,7 @@
         mounted() {
             let app = this;
             let id = app.$route.params.id;
-            app.Employee_id = id;
+            app.emp_id = id;
             axios.get('/api/v1/employees/' + id)
                 .then(function (resp) {
                     app.employee = resp.data;
@@ -52,10 +52,11 @@
         },
         data: function () {
             return {
-                Employee_id: null,
+                emp_id:null,
                 employee: {
+                    Employee_id: null,
                     Employee_name: '',
-                    Employee_cug_number:'',
+                    Employee_cug_number:''
                 }
             }
         },
@@ -64,7 +65,7 @@
                 event.preventDefault();
                 var app = this;
                 var newEmployee = app.employee;
-                axios.patch('/api/v1/employees/' + app.Employee_id, newEmployee)
+                axios.patch('/api/v1/employees/' + app.emp_id, newEmployee)
                     .then(function (resp) {
                         app.$router.replace('/');
                     })

@@ -10,11 +10,26 @@
  import VueRouter from 'vue-router';
  
  window.Vue.use(VueRouter);
- 
+
+ import VueHtmlToPaper from 'vue-html-to-paper';
+ Vue.use(VueHtmlToPaper, options);
  import EmployeesIndex from './components/employees/EmployeesIndex.vue';
  import EmployeesCreate from './components/employees/createEmployee.vue';
  import EmployeesEdit from './components/employees/editEmployee.vue';
  
+ const options = {
+    name: '_blank',
+    specs: [
+      'fullscreen=yes',
+      'titlebar=no',
+      'scrollbars=no',
+    ],
+    styles: [
+      'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
+      'https://unpkg.com/kidlat-css/css/kidlat.css'
+    ]
+  }
+
  const routes = [
      {
          path: '/',
