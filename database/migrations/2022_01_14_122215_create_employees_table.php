@@ -17,7 +17,7 @@ class CreateEmployeesTable extends Migration
             $table->increments('id');
             $table->integer('Employee_id');
             $table->string('Employee_name');
-            $table->string('Employee_cug_number');
+            $table->string('Employee_cug_number')->unique();
             $table->timestamps();
         });
     }

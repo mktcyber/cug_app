@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="form-group">
-            <router-link to="/" class="btn btn-default">Back</router-link>
+            <router-link to="/" class="btn btn-primary">Back</router-link>
         </div>
         <div class="panel panel-default">
             <div class="panel-heading">Edit Employee</div>
