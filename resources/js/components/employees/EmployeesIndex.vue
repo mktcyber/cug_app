@@ -4,6 +4,7 @@
 		<router-link :to="{name: 'createEmployee'}" class="btn btn-success">Create new Employee</router-link>
         
         <button class="btn btn-sm btn-primary" @click="print">Print</button>
+        <router-link :to="{name: 'importEmployee'}" class="col-md-12">import</router-link>
 	</div>
 	<div class="panel panel-default">
 		<div id="print" class="panel-body">
@@ -13,7 +14,7 @@
 				  <th>Employee ID</th>
 				  <th>Employee Name</th>
 				  <th>Employee CUG Number</th>
-                  <th v-show="!printing">Actions</th>
+                  <th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -21,7 +22,7 @@
                     <td>{{ employee.Employee_id }}</td>
                     <td>{{ employee.Employee_name }}</td>
                     <td>{{ employee.Employee_cug_number }}</td>
-                    <td v-show="!printing">
+                    <td>
                         <router-link :to="{name: 'editEmployee', params: {id: employee.id}}" class="btn btn-xs btn-default">
                             Edit
                         </router-link>
@@ -70,11 +71,14 @@
                 }
             },
             print() {
-                this.printing = true
-                this.$htmlToPaper('print', ()=>{
-                    this.printing = false
-                });
+                this.$htmlToPaper('print');
                 }
         }
     }
 </script>
+
+<style scoped>
+    .col-md-12{
+        margin-left: 200px;
+    }
+</style>

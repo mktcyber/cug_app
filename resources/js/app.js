@@ -16,6 +16,7 @@
  import EmployeesIndex from './components/employees/EmployeesIndex.vue';
  import EmployeesCreate from './components/employees/createEmployee.vue';
  import EmployeesEdit from './components/employees/editEmployee.vue';
+ import imp from './components/employees/import.vue';
  
  const options = {
     name: '_blank',
@@ -39,6 +40,7 @@
      },
      {path: '/admin/employees/create', component: EmployeesCreate, name: 'createEmployee'},
      {path: '/admin/employees/edit/:id', component: EmployeesEdit, name: 'editEmployee'},
+     {path: '/admin/employees/import', component: imp, name: 'importEmployee'}
  ]
  
  const router = new VueRouter({  

@@ -24,6 +24,7 @@
     },
     "dependencies": {
         "vue": "^2.6.14",
+        "vue-csv-import": "^2.3.4",
         "vue-html-to-paper": "^1.4.4",
         "vue-router": "^3.5.3"
     }
